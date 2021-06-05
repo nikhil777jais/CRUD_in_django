@@ -1,0 +1,48 @@
+{% extends 'enroll/base.html' %}
+{% block title %}Student Info{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3 class="alert alert-success text-center">Add Student Data </h3>
+      <form action="" method="POST" class="form-group" novalidate>
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" class="btn btn-success my-3" value="Add">
+      </form>
+    </div>
+    <div class="col-sm-7 offset-sm-1 " >
+    {% if stu %}
+      <h3 class="alert alert-success text-center">Students Record</h3>
+      <table class="table table-hover text-center border border-secondry">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for st in stu %}
+          <tr>
+            <th scope="row">{{st.id}}</th>
+            <td>{{st.name}}</td>
+            <td>{{st.email}}</td>
+            <td>{{st.password}}</td>
+            <td>
+              <a href="{% url 'update' st.id %}"><button class="btn btn-warning">Edit</button></a>
+              <a href="{% url 'delete' st.id %}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <h3 class="alert alert-danger text-center">No Record found </h3>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

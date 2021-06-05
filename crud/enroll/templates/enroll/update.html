@@ -1,0 +1,18 @@
+{% extends 'enroll/base.html' %}
+{% block title %}Update info{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <h3 class="alert alert-warning text-center">Update Student Data </h3>
+      <form action="" method="POST" class="form-group" novalidate>
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" class="btn btn-success mt-3" value="Update">
+        <a href="{% url 'add' %}" class="btn btn-info mx-2 mt-3">Go Home</a>
+      </form>
+      
+    </div>
+  </div> 
+</div>
+{% endblock content %}
